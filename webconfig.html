@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Animal Interactions</title>
-    <link rel="stylesheet" href="https://vantacheats.cc/files/darktemplate.webflow.20f9ab0c6.css"> <!-- Assuming the styles are in a file named styles.css -->
+    <link rel="stylesheet" href="https://vantacheats.cc/files/darktemplate.webflow.20f9ab0c6.css"> <!-- Link to external CSS -->
     <style>
-        /* Additional inline styles */
-        .menu { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; }
-        .menu button { margin: 10px; padding: 12px 24px; font-size: 16px; }
-        .menu input[type='checkbox'], .menu input[type='range'] { margin: 10px; }
-        .menu label { display: block; margin: 15px; }
+        /* Inline styles to adjust specific elements as needed */
+        .menu { display: flex; flex-direction: column; align-items: flex-start; width: 100%; padding: 20px; }
+        .menu button, .menu input, .menu label { margin-bottom: 10px; }
+        .menu section { border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 20px; width: 100%; }
+        .section-title { font-weight: bold; color: #fff; padding: 10px 0; }
     </style>
 </head>
 <body class="container-medium-756px"> <!-- Added class for styling -->
     <div class="menu">
-        <button onclick="fetch('/cat').then(response => response.text()).then(text => console.log(text))">Cat</button>
-        <button onclick="fetch('/dog').then(response => response.text()).then(text => console.log(text))">Dog</button>
-        <button onclick="fetch('/wolf').then(response => response.text()).then(text => console.log(text))">Wolf</button>
-        <label><input type='checkbox' onchange="fetch('/bear?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Bear</label>
-        <label><input type='checkbox' onchange="fetch('/bird?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Bird</label>
-        <label><input type='checkbox' onchange="fetch('/snake?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Snake</label>
-        <label>Elephant: <input type='range' onchange="fetch('/elephant?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
-        <label>Tiger: <input type='range' onchange="fetch('/tiger?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
-        <label>Fox: <input type='range' onchange="fetch('/fox?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
+        <section>
+            <div class="section-title">Mammals</div>
+            <button onclick="fetch('/cat').then(response => response.text()).then(text => console.log(text))">Cat</button>
+            <button onclick="fetch('/dog').then(response => response.text()).then(text => console.log(text))">Dog</button>
+            <button onclick="fetch('/wolf').then(response => response.text()).then(text => console.log(text))">Wolf</button>
+            <button onclick="fetch('/fox').then(response => response.text()).then(text => console.log(text))">Fox</button>
+            <button onclick="fetch('/bear').then(response => response.text()).then(text => console.log(text))">Bear</button>
+        </section>
+        <section>
+            <div class="section-title">Birds & Reptiles</div>
+            <label><input type='checkbox' onchange="fetch('/bird?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Bird</label>
+            <label><input type='checkbox' onchange="fetch('/snake?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Snake</label>
+        </section>
+        <section>
+            <div class="section-title">Large Animals</div>
+            <label>Elephant: <input type='range' onchange="fetch('/elephant?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
+            <label>Tiger: <input type='range' onchange="fetch('/tiger?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
+        </section>
     </div>
 </body>
 </html>
