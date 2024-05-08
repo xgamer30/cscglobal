@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Config Generator</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Add custom styles here */
+    .form-group .form-check {
+      margin-bottom: 10px; /* Add space between checkboxes */
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>JSON Config Generator</h1>
+    <form id="configForm">
+      <div class="form-group">
+        <label for="aimbot">Aimbot Settings</label>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="toggle">
+          <label class="form-check-label" for="toggle">Toggle</label>
+        </div>
+        <div class="form-group">
+          <label for="smoothness">Smoothness</label>
+          <input type="range" class="form-control-range" id="smoothness" min="0" max="25" step="0.1" value="4">
+        </div>
+		<div class="form-group">
+          <label for="keybind">Keybind</label>
+          <input type="number" class="form-control" id="keybind" min="0" max="255" value="20">
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="drawFieldOfView" checked>
+          <label class="form-check-label" for="drawFieldOfView">Draw Field of View</label>
+        </div>
+        <!-- Add sliders for float values -->
+        <div class="form-group">
+          <label for="fieldOfView">Field of View</label>
+          <input type="range" class="form-control-range" id="fieldOfView" min="5" max="1080" value="500">
+        </div>
+        <div class="form-group">
+          <label for="maxDistance">Max Distance</label>
+          <input type="range" class="form-control-range" id="maxDistance" min="5" max="600" value="600">
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="enablePrediction" checked>
+          <label class="form-check-label" for="enablePrediction">Enable Prediction</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="showPredictionDot">
+          <label class="form-check-label" for="showPredictionDot">Show Prediction Dot</label>
+        </div>
+        <!-- End of sliders for float values -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="ignoreBots">
+          <label class="form-check-label" for="ignoreBots">Ignore Bots</label>
+        </div>
+        <!-- Add more checkboxes with space between them -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="ignoreKnocked">
+          <label class="form-check-label" for="ignoreKnocked">Ignore Knocked</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="visibleOnly">
+          <label class="form-check-label" for="visibleOnly">Visible Only</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="magic">
+          <label class="form-check-label" for="magic">Magic</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="triggerbot">
+          <label class="form-check-label" for="triggerbot">Triggerbot</label>
+        </div>
+		<div class="form-group">
+          <label for="triggerKeybind">Triggerbot Keybind</label>
+          <input type="number" class="form-control" id="triggerKeybind" min="0" max="255" value="20">
+        </div>
+      </div>
+	  
+      <div class="form-group">
+        <label for="visual">Visual Settings</label>
+        <div class="form-group">
+          <label for="chestDistance">Chest Distance</label>
+          <input type="range" class="form-control-range" id="chestDistance" min="0" max="1000" value="150">
+        </div>
+        <div class="form-group">
+          <label for="itemDistance">Item Distance</label>
+          <input type="range" class="form-control-range" id="itemDistance" min="0" max="1000" value="75">
+        </div>
+        <div class="form-group">
+          <label for="playerDistance">Player Distance</label>
+          <input type="range" class="form-control-range" id="playerDistance" min="0" max="1000" value="400">
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="drawPlayerType">
+          <label class="form-check-label" for="drawPlayerType">Draw Player Type</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="showCrosshair">
+          <label class="form-check-label" for="showCrosshair">Show Crosshair</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="showIfAiming">
+          <label class="form-check-label" for="showIfAiming">Show If Aiming</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="showKnocked">
+          <label class="form-check-label" for="showKnocked">Show Knocked</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="showNotVisible">
+          <label class="form-check-label" for="showNotVisible">Show Not Visible</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="showTeammates">
+          <label class="form-check-label" for="showTeammates">Show Teammates</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="showVisible">
+          <label class="form-check-label" for="showVisible">Show Visible</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="showChests">
+          <label class="form-check-label" for="showChests">Show Chests</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="showItems">
+          <label class="form-check-label" for="showItems">Show Items</label>
+        </div>
+      </div>
+      <!-- Add more sections for other settings like visual -->
+      <!--<button type="submit" class="btn btn-primary">Generate JSON</button>-->
+	  <button type="button" id="downloadBtn" class="btn btn-primary">Download JSON</button>
+    </form>
+    <div id="jsonResult" class="mt-3">
+      <!-- Generated JSON will be displayed here -->
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // JavaScript code for handling form submission and JSON generation
+    $(document).ready(function() {
+      $('#configForm').submit(function(event) {
+        event.preventDefault();
+
+        // Collect values from form inputs
+var config = {
+  aimbot: {
+    drawFieldOfView: $('#drawFieldOfView').is(':checked'),
+    enablePrediction: $('#enablePrediction').is(':checked'),
+    fieldOfView: parseFloat($('#fieldOfView').val()),
+    ignoreBots: $('#ignoreBots').is(':checked'),
+    ignoreKnocked: $('#ignoreKnocked').is(':checked'),
+    keybind: parseInt($('#keybind').val()),
+    magic: $('#magic').is(':checked'),
+    maxDistance: parseFloat($('#maxDistance').val()),
+    showPredictionDot: $('#showPredictionDot').is(':checked'),
+    smoothness: parseFloat($('#smoothness').val()),
+    toggle: $('#toggle').is(':checked'),
+    triggerKeybind: parseInt($('#triggerKeybind').val()),
+    triggerbot: $('#triggerbot').is(':checked'),
+    visibleOnly: $('#visibleOnly').is(':checked')
+  },
+  visual: {
+    chestDistance: parseFloat($('#chestDistance').val()),
+    itemDistance: parseFloat($('#itemDistance').val()),
+    playerDistance: parseFloat($('#playerDistance').val()),
+    drawPlayerType: $('#drawPlayerType').is(':checked'),
+    showCrosshair: $('#showCrosshair').is(':checked'),
+    showIfAiming: $('#showIfAiming').is(':checked'),
+    showKnocked: $('#showKnocked').is(':checked'),
+    showNotVisible: $('#showNotVisible').is(':checked'),
+    showTeammates: $('#showTeammates').is(':checked'),
+    showVisible: $('#showVisible').is(':checked'),
+    showChests: $('#showChests').is(':checked'),
+    showItems: $('#showItems').is(':checked')
+  }
+};
+
+
+        // Convert object to JSON string
+        var jsonString = JSON.stringify(config, null, 2);
+
+        // Display JSON string
+        $('#jsonResult').text(jsonString);
+      });
+	  
+	  function downloadObjectAsJson(exportObj, exportName){
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj,undefined,2));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href",     dataStr);
+    downloadAnchorNode.setAttribute("download", exportName + ".json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  }
+  
+	  $('#downloadBtn').click(function() {
+        // Collect values from form inputs
+        var config = {
+  aimbot: {
+    drawFieldOfView: $('#drawFieldOfView').is(':checked'),
+    enablePrediction: $('#enablePrediction').is(':checked'),
+    fieldOfView: parseFloat($('#fieldOfView').val()),
+    ignoreBots: $('#ignoreBots').is(':checked'),
+    ignoreKnocked: $('#ignoreKnocked').is(':checked'),
+    keybind: parseInt($('#keybind').val()),
+    magic: $('#magic').is(':checked'),
+    maxDistance: parseFloat($('#maxDistance').val()),
+    showPredictionDot: $('#showPredictionDot').is(':checked'),
+    smoothness: parseFloat($('#smoothness').val()),
+    toggle: $('#toggle').is(':checked'),
+    triggerKeybind: parseInt($('#triggerKeybind').val()),
+    triggerbot: $('#triggerbot').is(':checked'),
+    visibleOnly: $('#visibleOnly').is(':checked')
+  },
+  visual: {
+    chestDistance: parseFloat($('#chestDistance').val()),
+    itemDistance: parseFloat($('#itemDistance').val()),
+    playerDistance: parseFloat($('#playerDistance').val()),
+    drawPlayerType: $('#drawPlayerType').is(':checked'),
+    showCrosshair: $('#showCrosshair').is(':checked'),
+    showIfAiming: $('#showIfAiming').is(':checked'),
+    showKnocked: $('#showKnocked').is(':checked'),
+    showNotVisible: $('#showNotVisible').is(':checked'),
+    showTeammates: $('#showTeammates').is(':checked'),
+    showVisible: $('#showVisible').is(':checked'),
+    showChests: $('#showChests').is(':checked'),
+    showItems: $('#showItems').is(':checked')
+  }
+};
+downloadObjectAsJson(config,"config");
+      });
+	  
+    });
+	
+  </script>
+</body>
+</html>
