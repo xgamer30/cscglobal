@@ -1,178 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <title>Advanced Game Features</title>
-    <style>
-        
-        /* Base styling for the entire page */
-        /* Base styling for the entire page */
-        body { 
-            background-color: #1e1e1e; 
-            color: #ffffff; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            overflow: hidden; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-        }
-
-        /* Styling for draggable tabs (windows) */
-        .tab-content { 
-            display: none; 
-            padding: 20px; 
-            border-radius: 10px; 
-            background-color: #2e2e22; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
-            position: absolute; 
-            width: 300px;
-            transition: transform 0.3s ease;
-        }
-        .tab-content.active { 
-            display: block; 
-        }
-
-        /* Button and input field styling */
-        button, input, label { 
-            margin: 10px; 
-        }
-        button { 
-            background-color: #4a4a4a; 
-            color: white; 
-            border: none; 
-            padding: 10px 15px; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            transition: background-color 0.2s, box-shadow 0.2s; 
-            box-shadow: 0 2px #666; 
-        }
-        button:hover { 
-            background-color: #626262; 
-        }
-        button:active { 
-            transform: translateY(4px); 
-            box-shadow: 0 1px #666; 
-        }
-        input[type='checkbox'], input[type='range'] { 
-            accent-color: #4a90e2; 
-        }
-        input[type='range'] { 
-            width: 90%; 
-            height: 8px; 
-            border-radius: 10px; 
-            outline: none; 
-        }
-
-        /* Tab links styling */
-        .tab-links { 
-            position: fixed; 
-            top: 10px; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            display: flex; 
-            gap: 10px;
-        }
-        .tab-links button { 
-            padding: 5px 10px; 
-        }
-
-        /* Window controls styling */
-        .window-controls { 
-            display: flex; 
-            position: absolute; 
-            top: 0; 
-            right: 10px; 
-        }
-        .window-btn { 
-            background: none; 
-            border: none; 
-            color: white; 
-            cursor: pointer; 
-            font-size: 16px; 
-            padding: 2px 6px; 
-        }
-    </style>
+<title>Animal Interactions</title>
+<style>
+body { background-color: #121212; color: white; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+button, input, label { margin: 10px; }
+button { background-color: #336; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s, transform 0.2s; }
+button:hover { background-color: #555; }
+button:active { transform: scale(0.95); }
+input[type='checkbox'] { accent-color: #777; }
+input[type='range'] { width: 300px; }
+</style>
 </head>
 <body>
-    <div class="tab-links">
-        <button onclick="openTab('aimbot', event)">Aimbot</button>
-        <button onclick="openTab('esp', event)">ESP</button>
-    </div>
-    <div id="aimbot" class="tab-content">
-        <div class="window-controls">
-            <button class="window-btn" onclick="minimize('aimbot')">_</button>
-            <button class="window-btn" onclick="closeTab('aimbot')">X</button>
-        </div>
-        <button onclick="console.log('Activate Aimbot')">Activate Aimbot</button>
-        <label><input type='checkbox'> Enable Precision</label>
-        <label>Precision Level: <input type='range'></label>
-    </div>
-    <div id="esp" class="tab-content">
-        <div class="window-controls">
-            <button class="window-btn" onclick="minimize('esp')">_</button>
-            <button class="window-btn" onclick="closeTab('esp')">X</button>
-        </div>
-        <button onclick="console.log('Activate ESP')">Activate ESP</button>
-        <label><input type='checkbox'> Show Enemies</label>
-        <label>Range of View: <input type='range'></label>
-    </div>
-
-    <script>
-        function openTab(tabId, evt) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            document.getElementById(tabId).style.display = "block";
-            makeDraggable(document.getElementById(tabId));
-            if (evt) {
-                evt.currentTarget.className += " active";
-            }
-        }
-
-        function makeDraggable(elem) {
-            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            elem.onmousedown = dragMouseDown;
-
-            function dragMouseDown(e) {
-                e = e || window.event;
-                e.preventDefault();
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                document.onmouseup = closeDragElement;
-                document.onmousemove = elementDrag;
-            }
-
-            function elementDrag(e) {
-                e = e || window.event;
-                e.preventDefault();
-                pos1 = pos3 - e.clientX;
-                pos2 = pos4 - e.clientY;
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                elem.style.top = (elem.offsetTop - pos2) + "px";
-                elem.style.left = (elem.offsetLeft - pos1) + "px";
-            }
-
-            function closeDragElement() {
-                document.onmouseup = null;
-                document.onmousemove = null;
-            }
-        }
-
-        function closeTab(tabId) {
-            var tab = document.getElementById(tabId);
-            tab.style.display = "none";
-        }
-
-        function minimize(tabId) {
-            var tab = document.getElementById(tabId);
-            tab.style.transform = 'scale(0.5)';
-            tab.style.transition = 'transform 0.5s ease';
-        }
-    </script>
+<button onclick="fetch('/cat').then(response => response.text()).then(text => console.log(text))">Cat</button>
+<button onclick="fetch('/dog').then(response => response.text()).then(text => console.log(text))">Dog</button>
+<button onclick="fetch('/wolf').then(response => response.text()).then(text => console.log(text))">Wolf</button>
+<label><input type='checkbox' onchange="fetch('/bear?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Bear</label>
+<label><input type='checkbox' onchange="fetch('/bird?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Bird</label>
+<label><input type='checkbox' onchange="fetch('/snake?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Snake</label>
+<label>Elephant: <input type='range' onchange="fetch('/elephant?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
+<label>Tiger: <input type='range' onchange="fetch('/tiger?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
+<label>Fox: <input type='range' onchange="fetch('/fox?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
 </body>
 </html>
