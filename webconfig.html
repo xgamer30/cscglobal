@@ -1,37 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
     <meta charset="UTF-8">
     <title>Animal Interactions</title>
-    <link rel="stylesheet" href="https://vantacheats.cc/files/darktemplate.webflow.20f9ab0c6.css"> <!-- Link to external CSS -->
+    <link rel="stylesheet" href="https://vantacheats.cc/files/darktemplate.webflow.20f9ab0c6.css"> <!-- External CSS -->
     <style>
-        /* Inline styles to adjust specific elements as needed */
-        .menu { display: flex; flex-direction: column; align-items: flex-start; width: 100%; padding: 20px; }
-        .menu button, .menu input, .menu label { margin-bottom: 10px; }
-        .menu section { border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 20px; width: 100%; }
-        .section-title { font-weight: bold; color: #fff; padding: 10px 0; }
+        /* Custom CSS for dark theme and top navigation bar */
+        body {
+            background-color: #1E1E1E;
+            color: #CCC;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #252526;
+            padding: 20px;
+            border: 1px solid #333;
+            width: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .top-bar {
+            width: 100%;
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .top-bar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #8A2BE2; /* Purple color */
+        }
+        .button {
+            background-color: #4B4B4B;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin-right: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #D4D4D4;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        button, input, label, select {
+            background-color: #333;
+            border: 1px solid #555;
+            color: white;
+            padding: 5px 10px;
+            margin: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
     </style>
 </head>
-<body class="container-medium-756px"> <!-- Added class for styling -->
-    <div class="menu">
-        <section>
-            <div class="section-title">Mammals</div>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <button class="button">Aimbot</button>
+            <button class="button">Antiaim</button>
+            <button class="button">Visuals</button>
+            <button class="button">Misc</button>
+            <button class="button">Config</button>
+            <button class="button">Skins</button>
+        </div>
+        <div class="section">
+            <h2>Animals</h2>
             <button onclick="fetch('/cat').then(response => response.text()).then(text => console.log(text))">Cat</button>
             <button onclick="fetch('/dog').then(response => response.text()).then(text => console.log(text))">Dog</button>
             <button onclick="fetch('/wolf').then(response => response.text()).then(text => console.log(text))">Wolf</button>
-            <button onclick="fetch('/fox').then(response => response.text()).then(text => console.log(text))">Fox</button>
             <button onclick="fetch('/bear').then(response => response.text()).then(text => console.log(text))">Bear</button>
-        </section>
-        <section>
-            <div class="section-title">Birds & Reptiles</div>
-            <label><input type='checkbox' onchange="fetch('/bird?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Bird</label>
-            <label><input type='checkbox' onchange="fetch('/snake?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Snake</label>
-        </section>
-        <section>
-            <div class="section-title">Large Animals</div>
-            <label>Elephant: <input type='range' onchange="fetch('/elephant?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
-            <label>Tiger: <input type='range' onchange="fetch('/tiger?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
-        </section>
+            <button onclick="fetch('/fox').then(response => response.text()).then(text => console.log(text))">Fox</button>
+        </div>
+        <div class="section">
+            <h2>Settings</h2>
+            <label><input type="checkbox" onchange="fetch('/statTrak?enabled=' + this.checked).then(response => response.text()).then(text => console.log(text))"> StatTrak</label>
+            <label for="offset-x">Offset X:
+                <input type="number" id="offset-x" step="0.1" onchange="fetch('/offsetX?value=' + this.value).then(response => response.text()).then(text => console.log(text))">
+            </label>
+            <label for="offset-y">Offset Y:
+                <input type="number" id="offset-y" step="0.1" onchange="fetch('/offsetY?value=' + this.value).then(response => response.text()).then(text => console.log(text))">
+            </label>
+            <label for="offset-z">Offset Z:
+                <input type="number" id="offset-z" step="0.1" onchange="fetch('/offsetZ?value=' + this.value).then(response to response.text()).then(text => console.log(text))">
+            </label>
+        </div>
     </div>
 </body>
 </html>
