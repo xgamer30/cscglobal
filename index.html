@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<title>Animal Interactions</title>
+<style>
+body { background-color: #121212; color: white; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+button, input, label { margin: 10px; }
+button { background-color: #334; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s, transform 0.2s; }
+button:hover { background-color: #555; }
+button:active { transform: scale(0.95); }
+input[type='checkbox'] { accent-color: #777; }
+input[type='range'] { width: 300px; }
+</style>
+</head>
+<body>
+<button onclick="fetch('/cat').then(response => response.text()).then(text => console.log(text))">Cat</button>
+<button onclick="fetch('/dog').then(response => response.text()).then(text => console.log(text))">Dog</button>
+<button onclick="fetch('/wolf').then(response => response.text()).then(text => console.log(text))">Wolf</button>
+<label><input type='checkbox' onchange="fetch('/bear?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Bear</label>
+<label><input type='checkbox' onchange="fetch('/bird?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Bird</label>
+<label><input type='checkbox' onchange="fetch('/snake?checked=' + this.checked).then(response => response.text()).then(text => console.log(text))">Snake</label>
+<label>Elephant: <input type='range' onchange="fetch('/elephant?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
+<label>Tiger: <input type='range' onchange="fetch('/tiger?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
+<label>Fox: <input type='range' onchange="fetch('/fox?value=' + this.value).then(response => response.text()).then(text => console.log(text))"></label>
+</body>
+</html>
